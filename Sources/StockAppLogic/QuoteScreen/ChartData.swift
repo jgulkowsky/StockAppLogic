@@ -8,7 +8,7 @@
 import Foundation
 
 public struct ChartData: Codable {
-    let values: [ChartItem]
+    public let values: [ChartItem]
     
     private enum CodingKeys: String, CodingKey {
         case values = "chart"

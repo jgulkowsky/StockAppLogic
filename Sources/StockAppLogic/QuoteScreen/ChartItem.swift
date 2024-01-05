@@ -8,11 +8,11 @@
 import Foundation
 
 public struct ChartItem: Codable {
-    let close: Double
-    let high: Double
-    let low: Double
-    let open: Double
-    let date: Date
+    public let close: Double
+    public let high: Double
+    public let low: Double
+    public let open: Double
+    public let date: Date
     
     public init(close: Double, high: Double, low: Double, open: Double, date: Date) {
         self.close = close
