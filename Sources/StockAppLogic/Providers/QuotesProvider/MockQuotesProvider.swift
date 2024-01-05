@@ -1,6 +1,6 @@
 //
 //  MockQuotesProvider.swift
-//  StockApp
+//  StockAppLogic
 //
 //  Created by Jan Gulkowski on 27/12/2023.
 //

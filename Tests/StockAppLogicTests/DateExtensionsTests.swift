@@ -1,6 +1,6 @@
 //
 //  DateExtensionsTests.swift
-//  StockAppTests
+//  StockAppLogicTests
 //
 //  Created by Jan Gulkowski on 30/12/2023.
 //

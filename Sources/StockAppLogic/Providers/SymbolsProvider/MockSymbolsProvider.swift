@@ -1,6 +1,6 @@
 //
 //  MockSymbolsProvider.swift
-//  StockApp
+//  StockAppLogic
 //
 //  Created by Jan Gulkowski on 28/12/2023.
 //

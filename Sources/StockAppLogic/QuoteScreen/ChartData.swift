@@ -1,6 +1,6 @@
 //
 //  ChartData.swift
-//  StockApp
+//  StockAppLogic
 //
 //  Created by Jan Gulkowski on 18/12/2023.
 //

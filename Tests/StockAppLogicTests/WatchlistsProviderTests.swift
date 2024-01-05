@@ -1,6 +1,6 @@
 //
 //  WatchlistsProviderTests.swift
-//  StockAppTests
+//  StockAppLogicTests
 //
 //  Created by Jan Gulkowski on 04/01/2024.
 //

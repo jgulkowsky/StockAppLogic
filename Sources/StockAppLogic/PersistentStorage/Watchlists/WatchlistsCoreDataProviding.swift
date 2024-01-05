@@ -1,6 +1,6 @@
 //
 //  WatchlistsCoreDataProviding.swift
-//  StockApp
+//  StockAppLogic
 //
 //  Created by Jan Gulkowski on 04/01/2024.
 //

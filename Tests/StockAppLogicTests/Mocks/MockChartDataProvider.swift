@@ -1,6 +1,6 @@
 //
 //  MockChartDataProvider.swift
-//  StockAppTests
+//  StockAppLogicTests
 //
 //  Created by Jan Gulkowski on 03/01/2024.
 //

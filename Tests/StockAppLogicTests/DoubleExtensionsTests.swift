@@ -1,6 +1,6 @@
 //
 //  DoubleExtensionsTests.swift
-//  StockAppTests
+//  StockAppLogicTests
 //
 //  Created by Jan Gulkowski on 15/12/2023.
 //
