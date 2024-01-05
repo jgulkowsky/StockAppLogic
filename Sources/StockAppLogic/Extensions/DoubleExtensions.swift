@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Double {
+public extension Double {
     func to2DecPlaces() -> String {
         return String(format: "%.2f", self) 
     }

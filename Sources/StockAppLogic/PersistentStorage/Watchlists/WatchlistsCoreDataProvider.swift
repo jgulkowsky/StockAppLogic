@@ -11,6 +11,8 @@ import CoreData
 public class WatchlistsCoreDataProvider: WatchlistsCoreDataProviding {
     private let viewContext = PersistenceController.shared.viewContext
     
+    public init() {}
+    
     public func getWatchlists() -> [Watchlist] {
         let watchlistEntities = getWatchlistEntities()
         let watchlists = watchlistEntities.map { watchlistEntity in

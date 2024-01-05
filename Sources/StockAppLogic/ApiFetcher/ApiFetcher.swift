@@ -16,4 +16,6 @@ public class ApiFetcher: ApiFetching {
         let data = try decoder.decode(T.self, from: result.0)
         return data
     }
+    
+    public init() {}
 }
