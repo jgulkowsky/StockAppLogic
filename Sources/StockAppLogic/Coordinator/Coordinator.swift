@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Coordinator: AnyObject {
+public protocol Coordinator: AnyObject {
     func onAppStart()
     func execute(action: Action)
 }

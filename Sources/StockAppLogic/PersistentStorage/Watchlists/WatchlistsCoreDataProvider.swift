@@ -8,10 +8,10 @@
 import Foundation
 import CoreData
 
-class WatchlistsCoreDataProvider: WatchlistsCoreDataProviding {
+public class WatchlistsCoreDataProvider: WatchlistsCoreDataProviding {
     private let viewContext = PersistenceController.shared.viewContext
     
-    func getWatchlists() -> [Watchlist] {
+    public func getWatchlists() -> [Watchlist] {
         let watchlistEntities = getWatchlistEntities()
         let watchlists = watchlistEntities.map { watchlistEntity in
             let symbolEntities = getSymbolEntities(of: watchlistEntity)
@@ -25,7 +25,7 @@ class WatchlistsCoreDataProvider: WatchlistsCoreDataProviding {
         return watchlists
     }
     
-    func addWatchlist(_ watchlist: Watchlist) {
+    public func addWatchlist(_ watchlist: Watchlist) {
         let watchlistEntity = WatchlistEntity(context: viewContext)
         watchlistEntity.id = watchlist.id
         watchlistEntity.name = watchlist.name
@@ -39,7 +39,7 @@ class WatchlistsCoreDataProvider: WatchlistsCoreDataProviding {
         saveToCoreData()
     }
     
-    func addSymbolToWatchlist(_ symbol: String, _ watchlist: Watchlist) {
+    public func addSymbolToWatchlist(_ symbol: String, _ watchlist: Watchlist) {
         guard let watchlistEntity = getWatchlistEntity(withId: watchlist.id) else { return }
         
         let symbolEntity = SymbolEntity(context: viewContext)
@@ -50,7 +50,7 @@ class WatchlistsCoreDataProvider: WatchlistsCoreDataProviding {
     }
     
     
-    func removeSymbolFromWatchlist(_ symbol: String, _ watchlist: Watchlist) {
+    public func removeSymbolFromWatchlist(_ symbol: String, _ watchlist: Watchlist) {
         guard let watchlistEntity = getWatchlistEntity(withId: watchlist.id),
               let symbolEntity = getSymbolEntity(of: watchlistEntity, withValue: symbol) else { return }
         
@@ -60,7 +60,7 @@ class WatchlistsCoreDataProvider: WatchlistsCoreDataProviding {
         saveToCoreData()
     }
     
-    func deleteWatchlist(_ watchlist: Watchlist) {
+    public func deleteWatchlist(_ watchlist: Watchlist) {
         guard let watchlistEntity = getWatchlistEntity(withId: watchlist.id) else { return }
         
         viewContext.delete(watchlistEntity)

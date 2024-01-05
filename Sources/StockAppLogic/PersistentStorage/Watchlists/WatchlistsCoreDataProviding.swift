@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol WatchlistsCoreDataProviding {
+public protocol WatchlistsCoreDataProviding {
     func getWatchlists() -> [Watchlist]
     func addWatchlist(_ watchlist: Watchlist)
     func addSymbolToWatchlist(_ symbol: String, _ watchlist: Watchlist)

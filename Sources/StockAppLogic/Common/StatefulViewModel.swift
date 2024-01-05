@@ -8,20 +8,20 @@
 import Foundation
 import Combine
 
-class StatefulViewModel {
-    enum State {
+public class StatefulViewModel {
+    public enum State {
         case loading
         case error
         case dataObtained
     }
     
-    var statePublisher: AnyPublisher<State, Never> {
+    public var statePublisher: AnyPublisher<State, Never> {
         stateSubject
             .removeDuplicates()
             .eraseToAnyPublisher()
     }
     
-    var errorPublisher: AnyPublisher<String?, Never> {
+    public var errorPublisher: AnyPublisher<String?, Never> {
         errorSubject
             .eraseToAnyPublisher()
     }
@@ -29,8 +29,9 @@ class StatefulViewModel {
     private var stateSubject: CurrentValueSubject<State, Never>
     private var errorSubject: CurrentValueSubject<String?, Never>
     
-    init(stateSubject: CurrentValueSubject<State, Never>,
-         errorSubject: CurrentValueSubject<String?, Never>
+    public init(
+        stateSubject: CurrentValueSubject<State, Never>,
+        errorSubject: CurrentValueSubject<String?, Never>
     ) {
         self.stateSubject = stateSubject
         self.errorSubject = errorSubject

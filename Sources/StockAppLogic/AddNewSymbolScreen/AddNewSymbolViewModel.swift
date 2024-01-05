@@ -8,14 +8,14 @@
 import Foundation
 import Combine
 
-class AddNewSymbolViewModel {
-    var symbolsPublisher: AnyPublisher<[String], Never> {
+public class AddNewSymbolViewModel {
+    public var symbolsPublisher: AnyPublisher<[String], Never> {
         symbolsSubject
             .removeDuplicates()
             .eraseToAnyPublisher()
     }
     
-    var symbolsCount: Int { symbolsSubject.value.count }
+    public var symbolsCount: Int { symbolsSubject.value.count }
     
     private var symbolsSubject = CurrentValueSubject<[String], Never>([])
     private var searchTextSubject = CurrentValueSubject<String?, Never>(nil)
@@ -28,11 +28,12 @@ class AddNewSymbolViewModel {
     private var watchlist: Watchlist
     private let searchTextDebounceMillis: Int
     
-    init(coordinator: Coordinator,
-         watchlistsProvider: WatchlistsProviding,
-         symbolsProvider: SymbolsProviding,
-         watchlist: Watchlist,
-         searchTextDebounceMillis: Int
+    public init(
+        coordinator: Coordinator,
+        watchlistsProvider: WatchlistsProviding,
+        symbolsProvider: SymbolsProviding,
+        watchlist: Watchlist,
+        searchTextDebounceMillis: Int
     ) {
 #if DEBUG
         print("@jgu: \(Self.self).init()")
@@ -51,16 +52,16 @@ class AddNewSymbolViewModel {
     }
 #endif
     
-    func getSymbolFor(index: Int) -> String? {
+    public func getSymbolFor(index: Int) -> String? {
         guard index < symbolsSubject.value.count else { return nil }
         return symbolsSubject.value[index]
     }
     
-    func onSearchTextChanged(to newText: String) {
+    public func onSearchTextChanged(to newText: String) {
         searchTextSubject.send(newText)
     }
     
-    func onItemTapped(at index: Int) {
+    public func onItemTapped(at index: Int) {
         guard let symbol = getSymbolFor(index: index) else { return }
         
         if !watchlist.symbols.contains(symbol) {

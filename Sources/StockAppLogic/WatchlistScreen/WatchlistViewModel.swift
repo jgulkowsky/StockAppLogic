@@ -8,20 +8,20 @@
 import Foundation
 import Combine
 
-class WatchlistViewModel: StatefulViewModel {
-    var titlePublisher: AnyPublisher<String, Never> {
+public class WatchlistViewModel: StatefulViewModel {
+    public var titlePublisher: AnyPublisher<String, Never> {
         titleSubject
             .removeDuplicates()
             .eraseToAnyPublisher()
     }
     
-    var stockItemsPublisher: AnyPublisher<[StockItem], Never> {
+    public var stockItemsPublisher: AnyPublisher<[StockItem], Never> {
         stockItemsSubject
             .removeDuplicates()
             .eraseToAnyPublisher()
     }
     
-    var stockItemsCount: Int { stockItemsSubject.value.count }
+    public var stockItemsCount: Int { stockItemsSubject.value.count }
     
     private var stateSubject = CurrentValueSubject<State, Never>(.loading)
     private var errorSubject = CurrentValueSubject<String?, Never>(nil)
@@ -38,11 +38,12 @@ class WatchlistViewModel: StatefulViewModel {
     private var watchlist: Watchlist
     private let refreshRate: Double
     
-    init(coordinator: Coordinator,
-         watchlistsProvider: WatchlistsProviding,
-         quotesProvider: QuotesProviding,
-         watchlist: Watchlist,
-         refreshRate: Double
+    public init(
+        coordinator: Coordinator,
+        watchlistsProvider: WatchlistsProviding,
+        quotesProvider: QuotesProviding,
+        watchlist: Watchlist,
+        refreshRate: Double
     ) {
 #if DEBUG
         print("@jgu: \(Self.self).init()")
@@ -67,29 +68,29 @@ class WatchlistViewModel: StatefulViewModel {
     }
 #endif
     
-    func onViewWillAppear() {
+    public func onViewWillAppear() {
         turnOnTimer()
     }
 
-    func onViewWillDisappear() {
+    public func onViewWillDisappear() {
         turnOffTimer()
     }
     
-    func getStockItemFor(index: Int) -> StockItem? {
+    public func getStockItemFor(index: Int) -> StockItem? {
         guard index < stockItemsSubject.value.count else { return nil }
         return stockItemsSubject.value[index]
     }
     
-    func onItemTapped(at index: Int) {
+    public func onItemTapped(at index: Int) {
         guard let stockItem = getStockItemFor(index: index) else { return }
         coordinator.execute(action: .itemSelected(data: stockItem))
     }
     
-    func onAddButtonTapped() {
+    public func onAddButtonTapped() {
         coordinator.execute(action: .addButtonTapped(data: watchlist))
     }
     
-    func onItemSwipedOut(at index: Int) {
+    public func onItemSwipedOut(at index: Int) {
         guard getStockItemFor(index: index) != nil else { return }
         
         var stockItems = stockItemsSubject.value

@@ -8,19 +8,19 @@
 import Foundation
 import Combine
 
-class QuoteViewModel: StatefulViewModel {
-    var titlePublisher: AnyPublisher<String, Never> {
+public class QuoteViewModel: StatefulViewModel {
+    public var titlePublisher: AnyPublisher<String, Never> {
         titleSubject
             .removeDuplicates()
             .eraseToAnyPublisher()
     }
     
-    var chartDataPublisher: AnyPublisher<ChartData, Never> {
+    public var chartDataPublisher: AnyPublisher<ChartData, Never> {
         chartDataSubject
             .eraseToAnyPublisher()
     }
     
-    var bidPricePublisher: AnyPublisher<String, Never> {
+    public var bidPricePublisher: AnyPublisher<String, Never> {
         bidPriceSubject
             .map { value in
                 self.setupPricePublisherValue(
@@ -31,7 +31,7 @@ class QuoteViewModel: StatefulViewModel {
             .eraseToAnyPublisher()
     }
     
-    var askPricePublisher: AnyPublisher<String, Never> {
+    public var askPricePublisher: AnyPublisher<String, Never> {
         askPriceSubject
             .map { value in
                 self.setupPricePublisherValue(
@@ -42,7 +42,7 @@ class QuoteViewModel: StatefulViewModel {
             .eraseToAnyPublisher()
     }
     
-    var lastPricePublisher: AnyPublisher<String, Never> {
+    public var lastPricePublisher: AnyPublisher<String, Never> {
         lastPriceSubject
             .map { value in
                 self.setupPricePublisherValue(
@@ -70,11 +70,12 @@ class QuoteViewModel: StatefulViewModel {
     private let symbol: String
     private let refreshRate: Double
     
-    init(coordinator: Coordinator,
-         quotesProvider: QuotesProviding,
-         chartDataProvider: ChartDataProviding,
-         symbol: String,
-         refreshRate: Double
+    public init(
+        coordinator: Coordinator,
+        quotesProvider: QuotesProviding,
+        chartDataProvider: ChartDataProviding,
+        symbol: String,
+        refreshRate: Double
     ) {
 #if DEBUG
         print("@jgu: \(Self.self).init()")
@@ -99,16 +100,16 @@ class QuoteViewModel: StatefulViewModel {
     }
 #endif
     
-    func onViewWillAppear() {
+    public func onViewWillAppear() {
         fetchData()
         turnOnTimer()
     }
 
-    func onViewWillDisappear() {
+    public func onViewWillDisappear() {
         turnOffTimer()
     }
     
-    func onErrorRefreshButtonTapped() {
+    public func onErrorRefreshButtonTapped() {
         fetchData()
     }
 }

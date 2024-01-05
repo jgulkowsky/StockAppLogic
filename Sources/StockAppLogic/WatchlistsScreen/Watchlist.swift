@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Watchlist: Equatable {
-    var id: UUID
-    var name: String
-    var symbols: [String]
+public struct Watchlist: Equatable {
+    public var id: UUID
+    public var name: String
+    public var symbols: [String]
 }

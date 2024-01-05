@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Action {
+public enum Action {
     case addButtonTapped(data: Any?)
     case itemSelected(data: Any?)
     case inputSubmitted

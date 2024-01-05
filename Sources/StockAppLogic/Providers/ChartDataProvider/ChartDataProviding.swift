@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol ChartDataProviding {
+public protocol ChartDataProviding {
     func getChartData(forSymbol symbol: String) async throws -> ChartData
 }

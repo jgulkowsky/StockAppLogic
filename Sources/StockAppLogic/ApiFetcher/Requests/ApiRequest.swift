@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ApiRequest {
+public protocol ApiRequest {
     var apiToken: String? { get }
     var request: URLRequest! { get }
 }

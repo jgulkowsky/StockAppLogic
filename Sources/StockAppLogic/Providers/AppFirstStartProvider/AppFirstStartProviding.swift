@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol AppFirstStartProviding {
+public protocol AppFirstStartProviding {
     var isFirstAppStart: Bool { get }
     func setAppFirstStarted()
 }

@@ -7,8 +7,8 @@
 
 import Foundation
 
-class ApiFetcher: ApiFetching {
-    func fetchData<T>(
+public class ApiFetcher: ApiFetching {
+    public func fetchData<T>(
         forRequest apiRequest: ApiRequest,
         andDecoder decoder: ApiDecoding
     ) async throws -> T where T : Decodable {

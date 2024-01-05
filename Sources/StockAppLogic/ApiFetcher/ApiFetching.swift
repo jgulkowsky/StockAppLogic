@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ApiFetching {
+public protocol ApiFetching {
     func fetchData<T>(
         forRequest apiRequest: ApiRequest,
         andDecoder decoder: ApiDecoding

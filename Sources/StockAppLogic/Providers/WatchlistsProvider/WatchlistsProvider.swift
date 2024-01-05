@@ -8,8 +8,10 @@
 import Foundation
 import Combine
 
-class WatchlistsProvider: WatchlistsProviding {
-    var watchlists: AnyPublisher<[Watchlist], Never> {
+// todo: we removed from init default value for initialList: Watchlist = Watchlist(id: UUID(), name: "My First List", symbols: ["AAPL", "GOOG", "MSFT"]) as it wasn't possible to have it in init of public class
+
+public class WatchlistsProvider: WatchlistsProviding {
+    public var watchlists: AnyPublisher<[Watchlist], Never> {
         watchlistsSubject
             .compactMap { $0 }
             .eraseToAnyPublisher()
@@ -20,9 +22,10 @@ class WatchlistsProvider: WatchlistsProviding {
     private var watchlistsSubject = CurrentValueSubject<[Watchlist]?, Never>(nil)
     private var store = Set<AnyCancellable>()
     
-    init(coreDataProvider: WatchlistsCoreDataProviding,
-         appFirstStartProvider: AppFirstStartProviding,
-         initialList: Watchlist = Watchlist(id: UUID(), name: "My First List", symbols: ["AAPL", "GOOG", "MSFT"])
+    public init(
+        coreDataProvider: WatchlistsCoreDataProviding,
+        appFirstStartProvider: AppFirstStartProviding,
+        initialList: Watchlist
     ) {
         self.coreDataProvider = coreDataProvider
         
@@ -34,13 +37,13 @@ class WatchlistsProvider: WatchlistsProviding {
         }
     }
     
-    func onAdd(_ watchlist: Watchlist) {
+    public func onAdd(_ watchlist: Watchlist) {
         watchlistsSubject.value?.append(watchlist)
         
         coreDataProvider.addWatchlist(watchlist)
     }
     
-    func onRemove(_ watchlist: Watchlist) {
+    public func onRemove(_ watchlist: Watchlist) {
         guard var watchlists = watchlistsSubject.value,
               let index = watchlists.firstIndex(where: { $0.id == watchlist.id } ) else { return }
         
@@ -50,7 +53,7 @@ class WatchlistsProvider: WatchlistsProviding {
         coreDataProvider.deleteWatchlist(watchlist)
     }
     
-    func onAdd(_ symbol: String, to watchlist: Watchlist) {
+    public func onAdd(_ symbol: String, to watchlist: Watchlist) {
         guard var watchlists = watchlistsSubject.value,
               let index = watchlists.firstIndex(where: { $0.id == watchlist.id } ) else { return }
         
@@ -62,7 +65,7 @@ class WatchlistsProvider: WatchlistsProviding {
         coreDataProvider.addSymbolToWatchlist(symbol, watchlist)
     }
     
-    func onRemove(_ symbol: String, from watchlist: Watchlist) {
+    public func onRemove(_ symbol: String, from watchlist: Watchlist) {
         guard var watchlists = watchlistsSubject.value,
               let index = watchlists.firstIndex(where: { $0.id == watchlist.id } ),
               let symbolIndex = watchlist.symbols.firstIndex(of: symbol) else { return }

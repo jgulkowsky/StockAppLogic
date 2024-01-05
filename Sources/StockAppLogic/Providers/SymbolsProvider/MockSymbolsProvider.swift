@@ -7,12 +7,12 @@
 
 import Foundation
 
-class MockSymbolsProvider: SymbolsProviding {
-    enum MockSymbolsProviderError: Error {
+public class MockSymbolsProvider: SymbolsProviding {
+    public enum MockSymbolsProviderError: Error {
         case any
     }
     
-    func getSymbols(startingWith text: String) async throws -> [String] {
+    public func getSymbols(startingWith text: String) async throws -> [String] {
         try? await Task.sleep(nanoseconds: 1 * 1_000_000_000) // 1 second
         
         if Bool.random() {

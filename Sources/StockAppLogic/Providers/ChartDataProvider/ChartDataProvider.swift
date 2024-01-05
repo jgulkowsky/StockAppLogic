@@ -7,14 +7,14 @@
 
 import Foundation
 
-class ChartDataProvider: ChartDataProviding {
+public class ChartDataProvider: ChartDataProviding {
     private let apiFetcher: ApiFetching
     
-    init(apiFetcher: ApiFetching) {
+    public init(apiFetcher: ApiFetching) {
         self.apiFetcher = apiFetcher
     }
     
-    func getChartData(forSymbol symbol: String) async throws -> ChartData {
+    public func getChartData(forSymbol symbol: String) async throws -> ChartData {
         let chartData: ChartData = try await apiFetcher.fetchData(
             forRequest: ChartDataRequest(symbol),
             andDecoder: ChartDataDecoder()

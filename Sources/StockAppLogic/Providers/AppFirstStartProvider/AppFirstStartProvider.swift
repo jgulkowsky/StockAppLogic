@@ -9,8 +9,8 @@ import Foundation
 
 // todo: you will probably need to use Bundle.module instead of Bundle.main
 
-class AppFirstStartProvider: AppFirstStartProviding {
-    var isFirstAppStart: Bool
+public class AppFirstStartProvider: AppFirstStartProviding {
+    public var isFirstAppStart: Bool
     
     private static var key_hasAppBeenStartedBefore = {
         guard let bundleName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String else { fatalError("Cannot retrive bundleName") }
@@ -18,12 +18,12 @@ class AppFirstStartProvider: AppFirstStartProviding {
     }()
     
     
-    init() {
+    public init() {
         let hasAppBeenStartedBefore = UserDefaults.standard.bool(forKey: AppFirstStartProvider.key_hasAppBeenStartedBefore)
         self.isFirstAppStart = !hasAppBeenStartedBefore
     }
     
-    func setAppFirstStarted() {
+    public func setAppFirstStarted() {
         UserDefaults.standard.set(true, forKey: AppFirstStartProvider.key_hasAppBeenStartedBefore)
     }
 }

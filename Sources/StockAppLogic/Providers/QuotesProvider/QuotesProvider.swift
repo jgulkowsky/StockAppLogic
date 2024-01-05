@@ -7,14 +7,14 @@
 
 import Foundation
 
-class QuotesProvider: QuotesProviding {
+public class QuotesProvider: QuotesProviding {
     private let apiFetcher: ApiFetching
     
-    init(apiFetcher: ApiFetching) {
+    public init(apiFetcher: ApiFetching) {
         self.apiFetcher = apiFetcher
     }
     
-    func getQuote(forSymbol symbol: String) async throws -> Quote {
+    public func getQuote(forSymbol symbol: String) async throws -> Quote {
         let quote: Quote = try await apiFetcher.fetchData(
             forRequest: QuoteRequest(symbol),
             andDecoder: QuoteDecoder()

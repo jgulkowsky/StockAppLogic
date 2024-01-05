@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol WatchlistsProviding {
+public protocol WatchlistsProviding {
     var watchlists: AnyPublisher<[Watchlist], Never> { get }
     
     func onAdd(_ watchlist: Watchlist)

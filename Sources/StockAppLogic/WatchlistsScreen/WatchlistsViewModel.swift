@@ -8,14 +8,14 @@
 import Foundation
 import Combine
 
-class WatchlistsViewModel: StatefulViewModel {
-    var watchlistsPublisher: AnyPublisher<[Watchlist], Never> {
+public class WatchlistsViewModel: StatefulViewModel {
+    public var watchlistsPublisher: AnyPublisher<[Watchlist], Never> {
         watchlistsSubject
             .removeDuplicates()
             .eraseToAnyPublisher()
     }
     
-    var watchlistsCount: Int { watchlistsSubject.value.count }
+    public var watchlistsCount: Int { watchlistsSubject.value.count }
     
     private var stateSubject = CurrentValueSubject<State, Never>(.loading)
     private var errorSubject = CurrentValueSubject<String?, Never>(nil)
@@ -27,8 +27,9 @@ class WatchlistsViewModel: StatefulViewModel {
     private unowned let coordinator: Coordinator
     private let watchlistsProvider: WatchlistsProviding
     
-    init(coordinator: Coordinator,
-         watchlistsProvider: WatchlistsProviding
+    public init(
+        coordinator: Coordinator,
+        watchlistsProvider: WatchlistsProviding
     ) {
 #if DEBUG
         print("@jgu: \(Self.self).init()")
@@ -50,21 +51,21 @@ class WatchlistsViewModel: StatefulViewModel {
     }
 #endif
     
-    func getWatchlistFor(index: Int) -> Watchlist? {
+    public func getWatchlistFor(index: Int) -> Watchlist? {
         guard index < watchlistsSubject.value.count else { return nil }
         return watchlistsSubject.value[index]
     }
     
-    func onItemTapped(at index: Int) {
+    public func onItemTapped(at index: Int) {
         guard let watchlist = getWatchlistFor(index: index) else { return }
         coordinator.execute(action: .itemSelected(data: watchlist))
     }
     
-    func onAddButtonTapped() {
+    public func onAddButtonTapped() {
         coordinator.execute(action: .addButtonTapped(data: nil))
     }
     
-    func onItemSwipedOut(at index: Int) {
+    public func onItemSwipedOut(at index: Int) {
         var watchlists = watchlistsSubject.value
         guard getWatchlistFor(index: index) != nil else { return }
         

@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Quote: Codable, Equatable {
-    let date: Date
-    let bidPrice: Double
-    let askPrice: Double
-    let lastPrice: Double
+public struct Quote: Codable, Equatable {
+    public let date: Date
+    public let bidPrice: Double
+    public let askPrice: Double
+    public let lastPrice: Double
     
     private enum CodingKeys: String, CodingKey {
         case date = "latestUpdate"

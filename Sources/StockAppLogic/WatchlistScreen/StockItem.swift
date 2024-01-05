@@ -7,17 +7,17 @@
 
 import Foundation
 
-struct StockItem {
-    let symbol: String
-    let quote: Quote?
+public struct StockItem {
+    public let symbol: String
+    public let quote: Quote?
 }
 
 extension StockItem: Comparable {
-    static func < (lhs: StockItem, rhs: StockItem) -> Bool {
+    public static func < (lhs: StockItem, rhs: StockItem) -> Bool {
         return lhs.symbol < rhs.symbol
     }
     
-    static func == (lhs: StockItem, rhs: StockItem) -> Bool {
+    public static func == (lhs: StockItem, rhs: StockItem) -> Bool {
         return lhs.symbol == rhs.symbol
             && lhs.quote == rhs.quote
     }

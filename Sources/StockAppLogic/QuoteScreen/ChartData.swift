@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChartData: Codable {
+public struct ChartData: Codable {
     let values: [ChartItem]
     
     private enum CodingKeys: String, CodingKey {

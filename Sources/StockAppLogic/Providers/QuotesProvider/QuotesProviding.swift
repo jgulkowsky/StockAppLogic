@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol QuotesProviding {
+public protocol QuotesProviding {
     func getQuote(forSymbol symbol: String) async throws -> Quote
 }

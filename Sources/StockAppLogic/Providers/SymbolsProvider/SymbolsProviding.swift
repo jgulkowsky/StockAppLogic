@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol SymbolsProviding {
+public protocol SymbolsProviding {
     func getSymbols(startingWith text: String) async throws -> [String]
 }

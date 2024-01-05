@@ -8,13 +8,13 @@
 import Foundation
 import Combine
 
-class AddNewWatchlistViewModel {
-    var errorPublisher: AnyPublisher<String?, Never> {
+public class AddNewWatchlistViewModel {
+    public var errorPublisher: AnyPublisher<String?, Never> {
         errorSubject
             .eraseToAnyPublisher()
     }
     
-    var watchlistTextPublisher: AnyPublisher<String, Never> {
+    public var watchlistTextPublisher: AnyPublisher<String, Never> {
         watchlistTextSubject
             .compactMap { $0 }
             .eraseToAnyPublisher()
@@ -32,10 +32,11 @@ class AddNewWatchlistViewModel {
     
     private var watchlists: [Watchlist]?
     
-    init(coordinator: Coordinator,
-         watchlistsProvider: WatchlistsProviding,
-         emptyNameError: String = "Watchlist name can't be empty!",
-         watchlistAlreadyExistsError: String = "Watchlist with this name already exists!"
+    public init(
+        coordinator: Coordinator,
+        watchlistsProvider: WatchlistsProviding,
+        emptyNameError: String = "Watchlist name can't be empty!",
+        watchlistAlreadyExistsError: String = "Watchlist with this name already exists!"
     ) {
 #if DEBUG
         print("@jgu: \(Self.self).init()")
@@ -47,11 +48,11 @@ class AddNewWatchlistViewModel {
         setupBindings()
     }
     
-    func onTextFieldFocused(initialText: String?) {
+    public func onTextFieldFocused(initialText: String?) {
         errorSubject.send(nil)
     }
     
-    func onTextFieldSubmitted(text: String?) {
+    public func onTextFieldSubmitted(text: String?) {
         guard let text = text,
               let watchlists = watchlists else { return }
         

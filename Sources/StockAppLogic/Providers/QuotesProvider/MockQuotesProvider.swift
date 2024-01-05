@@ -7,12 +7,12 @@
 
 import Foundation
 
-class MockQuotesProvider: QuotesProviding {
-    enum MockQuotesProviderError: Error {
+public class MockQuotesProvider: QuotesProviding {
+    public enum MockQuotesProviderError: Error {
         case any
     }
     
-    func getQuote(forSymbol symbol: String) async throws -> Quote {
+    public func getQuote(forSymbol symbol: String) async throws -> Quote {
         try? await Task.sleep(nanoseconds: 1 * 1_000_000_000) // 1 second
         
         if Bool.random() {
