@@ -8,8 +8,6 @@
 import Foundation
 import Combine
 
-// todo: we removed from init default value for initialList: Watchlist = Watchlist(id: UUID(), name: "My First List", symbols: ["AAPL", "GOOG", "MSFT"]) as it wasn't possible to have it in init of public class
-
 public class WatchlistsProvider: WatchlistsProviding {
     public var watchlists: AnyPublisher<[Watchlist], Never> {
         watchlistsSubject

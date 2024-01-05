@@ -19,4 +19,11 @@ public struct Quote: Codable, Equatable {
         case askPrice = "iexAskPrice"
         case lastPrice = "latestPrice"
     }
+    
+    public init(date: Date, bidPrice: Double, askPrice: Double, lastPrice: Double) {
+        self.date = date
+        self.bidPrice = bidPrice
+        self.askPrice = askPrice
+        self.lastPrice = lastPrice
+    }
 }

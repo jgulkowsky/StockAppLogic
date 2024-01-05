@@ -13,4 +13,8 @@ public struct ChartData: Codable {
     private enum CodingKeys: String, CodingKey {
         case values = "chart"
     }
+    
+    public init(values: [ChartItem]) {
+        self.values = values
+    }
 }

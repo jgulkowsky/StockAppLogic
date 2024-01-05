@@ -10,6 +10,11 @@ import Foundation
 public struct StockItem {
     public let symbol: String
     public let quote: Quote?
+    
+    public init(symbol: String, quote: Quote?) {
+        self.symbol = symbol
+        self.quote = quote
+    }
 }
 
 extension StockItem: Comparable {
