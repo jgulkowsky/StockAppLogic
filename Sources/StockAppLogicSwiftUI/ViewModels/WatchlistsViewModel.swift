@@ -9,4 +9,41 @@ import Foundation
 import Combine
 import StockAppLogic
 
-public class WatchlistsViewModel: ObservableObject {}
+public class WatchlistsViewModel: ObservableObject {
+    @Published public var watchlists: [Watchlist] = []
+    
+    public var watchlistsCount: Int { viewModel.watchlistsCount }
+    
+    private let viewModel: StockAppLogic.WatchlistsViewModel
+    private var store = Set<AnyCancellable>()
+    
+    public init(
+        coordinator: Coordinator,
+        watchlistsProvider: WatchlistsProviding
+    ) {
+        self.viewModel = StockAppLogic.WatchlistsViewModel(
+            coordinator: coordinator,
+            watchlistsProvider: watchlistsProvider
+        )
+        
+        self.viewModel.watchlistsPublisher.sink { [weak self] value in
+            self?.watchlists = value
+        }.store(in: &store)
+    }
+    
+    public func getWatchlistFor(index: Int) -> Watchlist? {
+        return viewModel.getWatchlistFor(index: index)
+    }
+    
+    public func onItemTapped(at index: Int) {
+        viewModel.onItemTapped(at: index)
+    }
+    
+    public func onAddButtonTapped() {
+        viewModel.onAddButtonTapped()
+    }
+    
+    public func onItemSwipedOut(at index: Int) {
+        viewModel.onItemSwipedOut(at: index)
+    }
+}
