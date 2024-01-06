@@ -10,14 +10,15 @@ import Combine
 import StockAppLogic
 
 public class AddNewSymbolViewModel: ObservableObject {
-    public var symbolsPublisher: AnyPublisher<[String], Never> { viewModel.symbolsPublisher } // todo: just for now so we can remove all the errors on the client side
+    public var symbolsPublisher: AnyPublisher<[String], Never> { viewModel.symbolsPublisher } // todo: just for now - to not have errors in UIKit app which is the only one we have now
     
     public var symbolsCount: Int { viewModel.symbolsCount }
     
-    
     @Published public var symbols: [String] = [] // todo: bind it somehow with symbolsPublisher from StockAppLogic.AddNewSymbolViewModel
     
-    private var viewModel: StockAppLogic.AddNewSymbolViewModel
+    private let viewModel: StockAppLogic.AddNewSymbolViewModel
+    
+    private var store = Set<AnyCancellable>()
     
     public init(
         coordinator: Coordinator,
@@ -33,6 +34,10 @@ public class AddNewSymbolViewModel: ObservableObject {
             watchlist: watchlist,
             searchTextDebounceMillis: searchTextDebounceMillis
         )
+        
+        self.viewModel.symbolsPublisher.sink { [weak self] value in
+            self?.symbols = value
+        }.store(in: &store)
     }
     
     public func getSymbolFor(index: Int) -> String? {
