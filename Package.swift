@@ -7,13 +7,16 @@ let package = Package(
     name: "StockAppLogic",
     platforms: [
         .macOS(.v12),
-        .iOS(.v15)
+        .iOS(.v15),
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "StockAppLogic",
             targets: ["StockAppLogic"]),
+        .library(
+            name: "StockAppLogicSwiftUI",
+            targets: ["StockAppLogicSwiftUI"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -25,6 +28,9 @@ let package = Package(
         .target(
             name: "StockAppLogic",
             dependencies: []),
+        .target(
+            name: "StockAppLogicSwiftUI",
+            dependencies: ["StockAppLogic"]),
         .testTarget(
             name: "StockAppLogicTests",
             dependencies: ["StockAppLogic"]),
