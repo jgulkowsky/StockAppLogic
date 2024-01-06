@@ -29,4 +29,16 @@ public class AddNewSymbolViewModel: ObservableObject {
             searchTextDebounceMillis: searchTextDebounceMillis
         )
     }
+    
+    public func getSymbolFor(index: Int) -> String? {
+        return viewModel.getSymbolFor(index: index)
+    }
+    
+    public func onSearchTextChanged(to newText: String) {
+        viewModel.onSearchTextChanged(to: newText)
+    }
+    
+    public func onItemTapped(at index: Int) {
+        viewModel.onItemTapped(at: index)
+    }
 }
