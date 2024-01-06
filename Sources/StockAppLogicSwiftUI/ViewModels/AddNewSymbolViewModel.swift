@@ -10,14 +10,11 @@ import Combine
 import StockAppLogic
 
 public class AddNewSymbolViewModel: ObservableObject {
-    public var symbolsPublisher: AnyPublisher<[String], Never> { viewModel.symbolsPublisher } // todo: just for now - to not have errors in UIKit app which is the only one we have now
+    @Published public var symbols: [String] = []
     
     public var symbolsCount: Int { viewModel.symbolsCount }
     
-    @Published public var symbols: [String] = [] // todo: bind it somehow with symbolsPublisher from StockAppLogic.AddNewSymbolViewModel
-    
     private let viewModel: StockAppLogic.AddNewSymbolViewModel
-    
     private var store = Set<AnyCancellable>()
     
     public init(
