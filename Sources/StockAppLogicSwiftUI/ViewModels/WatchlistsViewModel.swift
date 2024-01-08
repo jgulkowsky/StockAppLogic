@@ -10,6 +10,8 @@ import Combine
 import StockAppLogic
 
 public class WatchlistsViewModel: ObservableObject {
+    @Published public var state: StatefulViewModel.State = .loading
+    @Published public var error: String?
     @Published public var watchlists: [Watchlist] = []
     
     public var watchlistsCount: Int { viewModel.watchlistsCount }
@@ -25,6 +27,14 @@ public class WatchlistsViewModel: ObservableObject {
             coordinator: coordinator,
             watchlistsProvider: watchlistsProvider
         )
+        
+        self.viewModel.statePublisher.sink { [weak self] value in
+            self?.state = value
+        }.store(in: &store)
+        
+        self.viewModel.errorPublisher.sink { [weak self] value in
+            self?.error = value
+        }.store(in: &store)
         
         self.viewModel.watchlistsPublisher.sink { [weak self] value in
             self?.watchlists = value

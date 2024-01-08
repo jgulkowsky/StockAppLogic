@@ -10,6 +10,8 @@ import Combine
 import StockAppLogic
 
 public class QuoteViewModel: ObservableObject {
+    @Published public var state: StatefulViewModel.State = .loading
+    @Published public var error: String?
     @Published public var title: String = ""
     @Published public var chartData: ChartData = ChartData(values: [])
     @Published public var bidPrice: String = ""
@@ -33,6 +35,14 @@ public class QuoteViewModel: ObservableObject {
             symbol: symbol,
             refreshRate: refreshRate
         )
+        
+        self.viewModel.statePublisher.sink { [weak self] value in
+            self?.state = value
+        }.store(in: &store)
+        
+        self.viewModel.errorPublisher.sink { [weak self] value in
+            self?.error = value
+        }.store(in: &store)
         
         self.viewModel.titlePublisher.sink { [weak self] value in
             self?.title = value
