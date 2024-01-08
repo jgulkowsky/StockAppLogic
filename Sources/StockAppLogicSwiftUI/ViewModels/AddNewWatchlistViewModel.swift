@@ -29,13 +29,19 @@ public class AddNewWatchlistViewModel: ObservableObject {
             watchlistAlreadyExistsError: watchlistAlreadyExistsError
         )
         
-        self.viewModel.errorPublisher.sink { [weak self] value in
-            self?.error = value
-        }.store(in: &store)
+        self.viewModel.errorPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.error = value
+            }
+            .store(in: &store)
         
-        self.viewModel.watchlistTextPublisher.sink { [weak self] value in
-            self?.watchlistText = value
-        }.store(in: &store)
+        self.viewModel.watchlistTextPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.watchlistText = value
+            }
+            .store(in: &store)
     }
     
     public func onTextFieldFocused(initialText: String?) {

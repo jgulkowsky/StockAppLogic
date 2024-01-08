@@ -32,9 +32,12 @@ public class AddNewSymbolViewModel: ObservableObject {
             searchTextDebounceMillis: searchTextDebounceMillis
         )
         
-        self.viewModel.symbolsPublisher.sink { [weak self] value in
-            self?.symbols = value
-        }.store(in: &store)
+        self.viewModel.symbolsPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.symbols = value
+            }
+            .store(in: &store)
     }
     
     public func getSymbolFor(index: Int) -> String? {

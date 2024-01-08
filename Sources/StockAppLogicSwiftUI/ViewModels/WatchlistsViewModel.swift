@@ -28,17 +28,26 @@ public class WatchlistsViewModel: ObservableObject {
             watchlistsProvider: watchlistsProvider
         )
         
-        self.viewModel.statePublisher.sink { [weak self] value in
-            self?.state = value
-        }.store(in: &store)
+        self.viewModel.statePublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.state = value
+            }
+            .store(in: &store)
         
-        self.viewModel.errorPublisher.sink { [weak self] value in
-            self?.error = value
-        }.store(in: &store)
+        self.viewModel.errorPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.error = value
+            }
+            .store(in: &store)
         
-        self.viewModel.watchlistsPublisher.sink { [weak self] value in
-            self?.watchlists = value
-        }.store(in: &store)
+        self.viewModel.watchlistsPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.watchlists = value
+            }
+            .store(in: &store)
     }
     
     public func getWatchlistFor(index: Int) -> Watchlist? {

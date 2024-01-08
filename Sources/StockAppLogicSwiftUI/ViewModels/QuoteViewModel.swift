@@ -36,33 +36,54 @@ public class QuoteViewModel: ObservableObject {
             refreshRate: refreshRate
         )
         
-        self.viewModel.statePublisher.sink { [weak self] value in
-            self?.state = value
-        }.store(in: &store)
+        self.viewModel.statePublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.state = value
+            }
+            .store(in: &store)
         
-        self.viewModel.errorPublisher.sink { [weak self] value in
-            self?.error = value
-        }.store(in: &store)
+        self.viewModel.errorPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.error = value
+            }
+            .store(in: &store)
         
-        self.viewModel.titlePublisher.sink { [weak self] value in
-            self?.title = value
-        }.store(in: &store)
+        self.viewModel.titlePublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.title = value
+            }
+            .store(in: &store)
         
-        self.viewModel.chartDataPublisher.sink { [weak self] value in
-            self?.chartData = value
-        }.store(in: &store)
+        self.viewModel.chartDataPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.chartData = value
+            }
+            .store(in: &store)
         
-        self.viewModel.bidPricePublisher.sink { [weak self] value in
-            self?.bidPrice = value
-        }.store(in: &store)
+        self.viewModel.bidPricePublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.bidPrice = value
+            }
+            .store(in: &store)
         
-        self.viewModel.askPricePublisher.sink { [weak self] value in
-            self?.askPrice = value
-        }.store(in: &store)
+        self.viewModel.askPricePublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.askPrice = value
+            }
+            .store(in: &store)
         
-        self.viewModel.lastPricePublisher.sink { [weak self] value in
-            self?.lastPrice = value
-        }.store(in: &store)
+        self.viewModel.lastPricePublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.lastPrice = value
+            }
+            .store(in: &store)
     }
     
     public func onViewWillAppear() {

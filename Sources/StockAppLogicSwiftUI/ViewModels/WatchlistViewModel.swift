@@ -35,21 +35,33 @@ public class WatchlistViewModel: ObservableObject {
             refreshRate: refreshRate
         )
         
-        self.viewModel.statePublisher.sink { [weak self] value in
-            self?.state = value
-        }.store(in: &store)
+        self.viewModel.statePublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.state = value
+            }
+            .store(in: &store)
         
-        self.viewModel.errorPublisher.sink { [weak self] value in
-            self?.error = value
-        }.store(in: &store)
+        self.viewModel.errorPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.error = value
+            }
+            .store(in: &store)
         
-        self.viewModel.titlePublisher.sink { [weak self] value in
-            self?.title = value
-        }.store(in: &store)
+        self.viewModel.titlePublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.title = value
+            }
+            .store(in: &store)
         
-        self.viewModel.stockItemsPublisher.sink { [weak self] value in
-            self?.stockItems = value
-        }.store(in: &store)
+        self.viewModel.stockItemsPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.stockItems = value
+            }
+            .store(in: &store)
     }
     
     public func onViewWillAppear() {
