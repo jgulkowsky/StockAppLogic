@@ -49,7 +49,7 @@ public class AddNewWatchlistViewModel {
         setupBindings()
     }
     
-    public func onTextFieldFocused(initialText: String?) {
+    public func onTextFieldFocused() {
         errorSubject.send(nil)
     }
     

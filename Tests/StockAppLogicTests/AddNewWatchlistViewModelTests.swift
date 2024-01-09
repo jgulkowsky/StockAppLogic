@@ -222,7 +222,7 @@ final class AddNewWatchlistViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
         
         // when
-        self.viewModel!.onTextFieldFocused(initialText: nil)
+        self.viewModel!.onTextFieldFocused()
 
         // then
         self.viewModel!.errorPublisher

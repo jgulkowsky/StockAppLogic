@@ -44,8 +44,8 @@ public class AddNewWatchlistViewModel: ObservableObject {
             .store(in: &store)
     }
     
-    public func onTextFieldFocused(initialText: String?) {
-        viewModel.onTextFieldFocused(initialText: initialText)
+    public func onTextFieldFocused() {
+        viewModel.onTextFieldFocused()
     }
     
     public func onTextFieldSubmitted(text: String?) {
