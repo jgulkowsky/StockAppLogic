@@ -16,7 +16,14 @@ struct PersistenceController {
     }
     
     private init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Model")
+        guard
+            let objectModelURL = Bundle.module.url(forResource: "Model", withExtension: "momd"),
+            let objectModel = NSManagedObjectModel(contentsOf: objectModelURL)
+        else {
+            fatalError("Failed to retrieve the object model")
+        }
+        
+        container = NSPersistentContainer(name: "Model", managedObjectModel: objectModel)
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
