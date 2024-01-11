@@ -12,6 +12,8 @@ public class MockSymbolsProvider: SymbolsProviding {
         case any
     }
     
+    public init() {}
+    
     public func getSymbols(startingWith text: String) async throws -> [String] {
         try? await Task.sleep(nanoseconds: 1 * 1_000_000_000) // 1 second
         

@@ -12,6 +12,8 @@ public class MockQuotesProvider: QuotesProviding {
         case any
     }
     
+    public init() {}
+    
     public func getQuote(forSymbol symbol: String) async throws -> Quote {
         try? await Task.sleep(nanoseconds: 1 * 1_000_000_000) // 1 second
         

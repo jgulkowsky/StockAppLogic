@@ -10,6 +10,8 @@ import Foundation
 // todo: consinder having it rather only in the ViewApp as this is for some fast update to go on with development - if we need to change sth here then we would need to update first the package then provide the ViewApp with the new version of the package...
 
 public class MockChartDataProvider: ChartDataProviding {
+    public init() {}
+    
     public func getChartData(forSymbol symbol: String) async throws -> ChartData {
         try? await Task.sleep(nanoseconds: 2 * 1_000_000_000) // 2 seconds
 //        let dates = Date.last30Days()
