@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+// todo: make it also a StatefulViewModel?
 public class AddNewWatchlistViewModel {
     public var errorPublisher: AnyPublisher<String?, Never> {
         errorSubject
@@ -48,7 +49,7 @@ public class AddNewWatchlistViewModel {
         setupBindings()
     }
     
-    public func onTextFieldFocused(initialText: String?) {
+    public func onTextFieldFocused() {
         errorSubject.send(nil)
     }
     

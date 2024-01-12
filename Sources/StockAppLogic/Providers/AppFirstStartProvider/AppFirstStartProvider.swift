@@ -7,13 +7,11 @@
 
 import Foundation
 
-// todo: you will probably need to use Bundle.module instead of Bundle.main
-
 public class AppFirstStartProvider: AppFirstStartProviding {
     public var isFirstAppStart: Bool
     
     private static var key_hasAppBeenStartedBefore = {
-        guard let bundleName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String else { fatalError("Cannot retrive bundleName") }
+        guard let bundleName = Bundle.module.infoDictionary?[kCFBundleNameKey as String] as? String else { fatalError("Cannot retrive bundleName") }
         return "\(bundleName).hasAppBeenStartedBefore"
     }()
     

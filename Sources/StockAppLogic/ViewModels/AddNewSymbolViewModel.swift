@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+// todo: make it also a StatefulViewModel?
 public class AddNewSymbolViewModel {
     public var symbolsPublisher: AnyPublisher<[String], Never> {
         symbolsSubject
